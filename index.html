@@ -1,3 +1,33 @@
 <h1>Cheez the Website</h1>
 <p>Hello</p>
 
+<div class="header__inner">
+    <p>&#127911; <span id="song">&#8987;</span></p>
+</div>
+<div class="header__inner">
+    <p><small>latest played song on <a href="http://last.fm" target="_blank">last.fm</a></small> | <small>powered by <a
+                href="https://github.com/biancarosa/lastfm-last-played"
+                target="_blank">@biancarosa/lastfm-last-played</a></small></p>
+</div>
+<script type="text/javascript">
+    let user = 'cheeztherecko';
+    let url = 'https://lastfm-last-played.biancarosa.com.br/' + user + '/latest-song';
+    let song = document.querySelector('#song');
+    fetch(url)
+        .then(function (response) {
+            return response.json()
+        }).then(function (json) {
+            song.innerHTML = json['track']['name'] + ' - ' + json['track']['artist']['#text'];
+        });
+</script>
+
+
+<hr />
+
+{{ if .IsHome }}
+<h2>Substack (Posts Futuros / Future Posts)</h2>
+<iframe src="https://backendengineeringadventures.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+
+<h2>Go Essentials & Descomplicando o Go</h2>
+<a href="https://linuxtips.io">Disponíveis na LinuxTips.io</a>
+{{ end }}
